@@ -2,7 +2,7 @@ const game = kaboom({
   background: [0, 191, 255],
 })
 
-loadSprite('emaster', '/sprite.png')
+loadSprite('emaster', '../variables/sprite.png')
 if (isGravity) {
   setGravity(1600)
 }

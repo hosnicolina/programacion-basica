@@ -1,7 +1,7 @@
 kaboom();
 
 
-loadSprite('emaster', './sprite.png')
+loadSprite('emaster', '/variables/sprite.png')
 
 let scale = .3
 let color = rgb(20, 250, 250)
