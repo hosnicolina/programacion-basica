@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Temario del Curso</title>
+    <script src="https://cdn.jsdelivr.net/npm/handlebars@latest/dist/handlebars.min.js"></script>
+    <link
+      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../../main.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.0/styles/default.min.css"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.0/highlight.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/base16/dracula.min.css">
+    <script>
+      hljs.highlightAll()
+    </script>
+  </head>
+  <body class="bg-gray-100 p-6">
+    <div class="markdown-body">
+      <div id="content"></div>
+    </div>
+
+    <script id="content-template" type="text/x-handlebars-template">
+      {{{content}}}
+    </script>
+
+    <script>
+      document.addEventListener('DOMContentLoaded', function () {
+        const source = document.getElementById('content-template').innerHTML
+        const template = Handlebars.compile(source)
+
+        const markdownContent = `
+# Variables
+
+Las variables son contenedores para almacenar datos. En programación, una variable es una forma de reservar un espacio en la memoria del ordenador para guardar un valor que puede cambiar durante la ejecución del programa. Una variable tiene un nombre simbólico (un identificador) que se usa para referirse a ese valor.
+
+## Declaración de Variables
+
+En muchos lenguajes de programación, las variables deben ser declaradas antes de poder ser usadas. La declaración de una variable implica decirle al compilador o intérprete el nombre de la variable y, en algunos casos, el tipo de datos que contendrá.
+
+### Ejemplo en JavaScript
+\`\`\`javascript
+let edad; // Declaración de una variable sin inicializar
+edad = 25; // Inicialización de la variable
+
+let nombre = 'Juan'; // Declaración e inicialización de una variable
+\`\`\`
+
+## Tipos de Variables
+
+Las variables pueden almacenar diferentes tipos de datos, como números, cadenas de texto, booleanos, etc. Dependiendo del lenguaje de programación, el tipo de datos puede ser definido explícitamente o inferido por el intérprete.
+
+## Reglas para Nombrar Variables
+
+- Los nombres de las variables pueden contener letras, números, guiones bajos (_) y signos de dólar ($).
+- Los nombres de las variables deben comenzar con una letra, un guion bajo (_) o un signo de dólar ($).
+- Los nombres de las variables distinguen entre mayúsculas y minúsculas (es decir, \`edad\` y \`Edad\` serían dos variables diferentes).
+- Los nombres de las variables no pueden ser palabras reservadas del lenguaje de programación (por ejemplo, \`let\`, \`function\`, \`if\`, etc., en JavaScript).
+
+
+`
+
+        const htmlContent = marked.parse(markdownContent)
+        const context = { content: htmlContent }
+        const html = template(context)
+        document.getElementById('content').innerHTML = html
+      })
+    </script>
+  </body>
+</html>
+```

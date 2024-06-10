@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Temario del Curso</title>
+    <script src="https://cdn.jsdelivr.net/npm/handlebars@latest/dist/handlebars.min.js"></script>
+    <link
+      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../../main.css" />
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  </head>
+  <body class="bg-gray-100 p-6">
+    <div class="markdown-body">
+        <div id="content"></div>
+    </div>
+
+    <script id="content-template" type="text/x-handlebars-template">
+      {{{content}}}
+    </script>
+
+    <script>
+      document.addEventListener('DOMContentLoaded', function () {
+        const source = document.getElementById('content-template').innerHTML
+        const template = Handlebars.compile(source)
+
+        const markdownContent = `
+## Mitos sobre Aprender Programación
+
+Aprender programación está rodeado de varios mitos y conceptos erróneos que pueden desalentar a las personas o crear falsas expectativas. Aquí están algunos de los mitos más comunes y la realidad detrás de ellos:
+
+1. **"Es solo para genios matemáticos":**
+   - **Mito:** Solo las personas con habilidades excepcionales en matemáticas pueden aprender a programar.
+   - **Realidad:** Aunque una comprensión básica de las matemáticas puede ayudar, la programación se centra más en la lógica, la resolución de problemas y la creatividad. Muchas personas con diversos antecedentes y habilidades han aprendido a programar con éxito.
+
+2. **"Debes empezar joven para ser bueno":**
+   - **Mito:** Solo las personas que comienzan a programar desde una edad temprana pueden llegar a ser buenas en ello.
+   - **Realidad:** No hay una edad ideal para comenzar a programar. Muchas personas comienzan a programar en la universidad o incluso más tarde en sus carreras y aún así logran ser muy exitosas. La dedicación y la práctica son más importantes que la edad de inicio.
+
+3. **"La programación es aburrida y tediosa":**
+   - **Mito:** Programar es una tarea monótona y aburrida.
+   - **Realidad:** La programación puede ser extremadamente creativa y gratificante. Los programadores construyen cosas nuevas, resuelven problemas complejos y tienen la oportunidad de trabajar en una amplia variedad de proyectos emocionantes.
+
+4. **"Necesitas ser un experto en informática":**
+   - **Mito:** Para aprender a programar, necesitas tener un profundo conocimiento en ciencias de la computación.
+   - **Realidad:** Si bien el conocimiento en ciencias de la computación puede ser beneficioso, no es un requisito previo para aprender a programar. Muchas personas comienzan con cursos en línea, bootcamps de codificación y otros recursos educativos que no requieren experiencia previa en informática.
+
+5. **"Debes memorizar mucho código":**
+   - **Mito:** Programar requiere memorizar una gran cantidad de código.
+   - **Realidad:** La programación se trata más de entender conceptos y saber cómo buscar soluciones. Los programadores a menudo consultan documentación, ejemplos y usan herramientas para escribir código eficiente.
+
+6. **"Solo hay un lenguaje de programación correcto para aprender":**
+   - **Mito:** Hay un lenguaje de programación "mejor" o "correcto" que todos deberían aprender primero.
+   - **Realidad:** No existe un lenguaje de programación universalmente mejor. El lenguaje que elijas depende de tus objetivos y el tipo de proyectos en los que estés interesado. Lenguajes como Python, JavaScript, y Java son populares por diversas razones.
+
+7. **"Los programadores trabajan solos":**
+   - **Mito:** Los programadores siempre trabajan solos y no necesitan habilidades de comunicación.
+   - **Realidad:** La programación a menudo implica trabajar en equipo y colaborar con otros desarrolladores, diseñadores y partes interesadas. Las habilidades de comunicación y trabajo en equipo son esenciales.
+
+8. **"Una vez que aprendes a programar, lo sabes todo":**
+   - **Mito:** Una vez que dominas la programación, ya no hay nada más que aprender.
+   - **Realidad:** La tecnología y los lenguajes de programación están en constante evolución. Los programadores deben estar dispuestos a aprender continuamente y adaptarse a nuevas herramientas y metodologías.
+
+`
+
+        const htmlContent = marked.parse(markdownContent)
+        const context = { content: htmlContent }
+        const html = template(context)
+        document.getElementById('content').innerHTML = html
+      })
+    </script>
+  </body>
+</html>

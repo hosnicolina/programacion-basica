@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Temario del Curso</title>
+    <script src="https://cdn.jsdelivr.net/npm/handlebars@latest/dist/handlebars.min.js"></script>
+    <link
+      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
+      rel="stylesheet"
+    />
+  </head>
+  <body class="bg-gray-100 p-6">
+    <div class="max-w-4xl mx-auto bg-white p-8 rounded-lg shadow-lg">
+      <h1 class="text-3xl font-bold mb-6 text-center">Temario del Curso</h1>
+      <div id="temario"></div>
+    </div>
+
+    <script id="temario-template" type="text/x-handlebars-template">
+      <div class='space-y-8'>
+        {{#each sections}}
+          <div class='pb-4'>
+            <h2 class='text-2xl font-semibold mb-4'>{{title}}</h2>
+            <ul class='space-y-2'>
+              {{#each topics}}
+                <li>
+                  <a
+                    href='{{link}}'
+                    class='block p-4 bg-gray-50 hover:bg-gray-100 rounded-md border transition duration-200 ease-in-out shadow-sm'
+                  >
+                    <span
+                      class='text-lg font-medium text-blue-600'
+                    >{{name}}</span>
+                  </a>
+                </li>
+              {{/each}}
+            </ul>
+          </div>
+        {{/each}}
+      </div>
+    </script>
+
+    <script>
+      document.addEventListener('DOMContentLoaded', function () {
+        const source = document.getElementById('temario-template').innerHTML
+        const template = Handlebars.compile(source)
+
+        const context = {
+          sections: [
+            {
+              title: 'Introducción a la Programación',
+              topics: [
+                {
+                  name: 'Que es la programación',
+                  link: '/contenido/programacion/index.html',
+                },
+                {
+                  name: 'Mitos de aprender programación',
+                  link: 'contenido/programacion/mitos.html',
+                },
+              ],
+            },
+            {
+              title: 'Variables',
+              topics: [
+                {
+                  name: '¿variables?',
+                  link: 'contenido/variables/index.html',
+                },
+                {
+                  name: 'Tipos de Datos y Sus Ejemplos en JavaScript',
+                  link: '/contenido/variables/tipos.html',
+                },
+                {
+                  name: 'Ejercicios',
+                  link: '/ejercicios/variables/index.html',
+                },
+              ],
+            },
+          ],
+        }
+
+        const html = template(context)
+        document.getElementById('temario').innerHTML = html
+      })
+    </script>
+  </body>
+</html>

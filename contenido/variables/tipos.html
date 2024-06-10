@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Temario del Curso</title>
+    <script src="https://cdn.jsdelivr.net/npm/handlebars@latest/dist/handlebars.min.js"></script>
+    <link
+      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../../main.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.0/styles/default.min.css"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.0/highlight.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/base16/dracula.min.css">
+    <script>
+      hljs.highlightAll()
+    </script>
+  </head>
+  <body class="bg-gray-100 p-6">
+    <div class="markdown-body">
+      <div id="content"></div>
+    </div>
+
+    <script id="content-template" type="text/x-handlebars-template">
+      {{{content}}}
+    </script>
+
+    <script>
+      document.addEventListener('DOMContentLoaded', function () {
+        const source = document.getElementById('content-template').innerHTML
+        const template = Handlebars.compile(source)
+
+        const markdownContent = `
+# Tipos de Datos y Sus Ejemplos en JavaScript
+
+En JavaScript, hay varios tipos de datos que se utilizan para almacenar diferentes tipos de información. Aquí están los principales tipos de datos con ejemplos:
+
+## 1. Números (Number)
+**Descripción:** Incluye tanto enteros como decimales.  
+**Ejemplos:**
+\`\`\`javascript
+let entero = 42;         // Número entero
+let decimal = 3.14;      // Número decimal (flotante)
+\`\`\`
+
+## 2. Cadenas de Texto (String)
+**Descripción:** Una cadena de texto es una secuencia de caracteres.  
+**Ejemplos:**
+\`\`\`javascript
+let saludo = "Hola, mundo!";  // Cadena de texto con comillas dobles
+let nombre = 'Juan';          // Cadena de texto con comillas simples
+let frase = \`Es un día soleado.\`; // Cadena de texto con comillas invertidas (template literals)
+\`\`\`
+
+## 3. Booleanos (Boolean)
+**Descripción:** Representa un valor verdadero o falso.  
+**Ejemplos:**
+\`\`\`javascript
+let esVerdadero = true;   // Booleano verdadero
+let esFalso = false;      // Booleano falso
+\`\`\`
+
+## 4. Indefinido (Undefined)
+**Descripción:** Una variable que ha sido declarada pero no se le ha asignado un valor.  
+**Ejemplos:**
+\`\`\`javascript
+let sinDefinir;   // La variable es indefinida
+\`\`\`
+
+## 5. Nulo (Null)
+**Descripción:** Representa la ausencia intencional de cualquier valor objeto.  
+**Ejemplos:**
+\`\`\`javascript
+let valorNulo = null;  // La variable tiene un valor nulo
+\`\`\`
+
+## 6. Símbolo (Symbol)
+**Descripción:** Un tipo de dato cuyos valores son únicos e inmutables.  
+**Ejemplos:**
+\`\`\`javascript
+let simbolo1 = Symbol('descripcion');  // Símbolo con descripción
+let simbolo2 = Symbol();               // Símbolo sin descripción
+\`\`\`
+
+## 7. Objeto (Object)
+**Descripción:** Un conjunto de propiedades y métodos. Puede incluir arrays y funciones.  
+**Ejemplos:**
+\`\`\`javascript
+let persona = {            // Objeto literal
+  nombre: 'Juan',
+  edad: 30
+};
+
+let numeros = [1, 2, 3, 4]; // Array (tipo especial de objeto)
+\`\`\`
+
+## 8. BigInt
+**Descripción:** Representa números enteros de tamaño arbitrario.  
+**Ejemplos:**
+\`\`\`javascript
+let numeroGrande = BigInt(123456789012345678901234567890); // BigInt
+\`\`\`
+
+## Resumen de Ejemplos
+\`\`\`javascript
+// Number
+let entero = 42;
+let decimal = 3.14;
+
+// String
+let saludo = "Hola, mundo!";
+let nombre = 'Juan';
+let frase = \`Es un día soleado.\`;
+
+// Boolean
+let esVerdadero = true;
+let esFalso = false;
+
+// Undefined
+let sinDefinir;
+
+// Null
+let valorNulo = null;
+
+// Symbol
+let simbolo1 = Symbol('descripcion');
+let simbolo2 = Symbol();
+
+// Object
+let persona = {
+  nombre: 'Juan',
+  edad: 30
+};
+
+let numeros = [1, 2, 3, 4]; // Array (tipo especial de objeto)
+
+// BigInt
+let numeroGrande = BigInt(123456789012345678901234567890);
+\`\`\`
+
+
+`
+
+        const htmlContent = marked.parse(markdownContent)
+        const context = { content: htmlContent }
+        const html = template(context)
+        document.getElementById('content').innerHTML = html
+      })
+    </script>
+  </body>
+</html>
+```

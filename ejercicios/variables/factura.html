@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Factura de Servicios</title>
+    <script src="https://cdn.jsdelivr.net/npm/handlebars@latest/dist/handlebars.min.js"></script>
+    <link
+      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
+      rel="stylesheet"
+    />
+  </head>
+  <body class="bg-gray-100 p-6">
+    <div class="max-w-4xl mx-auto bg-white p-6 rounded-lg shadow-lg">
+      <h1 class="text-2xl font-bold mb-4">Factura de Servicios</h1>
+      <div id="invoice"></div>
+    </div>
+
+    <script id="invoice-template" type="text/x-handlebars-template">
+      <div class='mb-4'>
+        <h2 class='text-xl font-semibold'>Empresa: Emaster</h2>
+        <p class='text-lg'>Cliente: {{clientName}}</p>
+        <p class='text-lg'>Fecha: {{date}}</p>
+      </div>
+      <table class='table-auto w-full mb-4'>
+        <thead>
+          <tr class='bg-gray-200'>
+            <th class='px-4 py-2'>Servicio</th>
+            <th class='px-4 py-2'>Precio</th>
+          </tr>
+        </thead>
+        <tbody>
+          {{#each services}}
+            <tr>
+              <td class='border px-4 py-2'>{{this.name}}</td>
+              <td class='border px-4 py-2'>${{this.price}}</td>
+            </tr>
+          {{/each}}
+        </tbody>
+      </table>
+      <div class='text-right'>
+        <p class='text-lg font-semibold'>Total: ${{total}}</p>
+      </div>
+    </script>
+
+    <script>
+      window.data = {
+        clientName: 'Empresa Contratante Ficticia',
+        date: new Date().toLocaleDateString(),
+        services: [
+          { name: 'Diseño Web', price: 500 },
+          { name: 'Diseño UI y UX', price: 400 },
+          { name: 'Desarrollo con WordPress', price: 600 },
+          { name: 'Servidor y Dominio', price: 200 },
+        ],
+        total: 500 + 400 + 600 + 200,
+      }
+    </script>
+
+    <script>
+      document.addEventListener('DOMContentLoaded', function () {
+        const data = window.data
+        const source = document.getElementById('invoice-template').innerHTML
+        const template = Handlebars.compile(source)
+
+        const context = data
+
+        const html = template(context)
+        document.getElementById('invoice').innerHTML = html
+      })
+    </script>
+  </body>
+</html>

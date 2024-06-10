@@ -1,0 +1,83 @@
+/* Estilos personalizados para Markdown convertido a HTML */
+.markdown-body {
+    max-width: 48rem; /* max-w-4xl */
+    margin-left: auto; /* mx-auto */
+    margin-right: auto; /* mx-auto */
+    background-color: #ffffff; /* bg-white */
+    padding: 2rem; /* p-8 */
+    border-radius: 0.5rem; /* rounded-lg */
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05); /* shadow-lg */
+    line-height: 1.625; /* leading-relaxed */
+  }
+  
+  .markdown-body h1,
+  .markdown-body h2,
+  .markdown-body h3,
+  .markdown-body h4,
+  .markdown-body h5,
+  .markdown-body h6 {
+    font-weight: 700; /* font-bold */
+    margin-top: 1.5rem; /* mt-6 */
+    margin-bottom: 0.5rem; /* mb-2 */
+  }
+  
+  .markdown-body h1 {
+    font-size: 1.875rem; /* text-3xl */
+  }
+  
+  .markdown-body h2 {
+    font-size: 1.5rem; /* text-2xl */
+  }
+  
+  .markdown-body h3 {
+    font-size: 1.25rem; /* text-xl */
+  }
+  
+  .markdown-body h4 {
+    font-size: 1.125rem; /* text-lg */
+  }
+  
+  .markdown-body p {
+    margin-bottom: 1rem; /* mb-4 */
+  }
+  
+  .markdown-body ul,
+  .markdown-body ol {
+    list-style-type: disc; /* list-disc */
+    list-style-position: inside; /* list-inside */
+    margin-bottom: 1rem; /* mb-4 */
+    padding-left: 1rem; /* pl-4 */
+  }
+
+  .markdown-body ol{
+    list-style: none;
+  }
+  
+  .markdown-body a {
+    color: #2563eb; /* text-blue-600 */
+    text-decoration: underline; /* hover:underline */
+  }
+  
+  .markdown-body blockquote {
+    border-left-width: 0.25rem; /* border-l-4 */
+    border-left-color: #d1d5db; /* border-gray-300 */
+    padding-left: 1rem; /* pl-4 */
+    font-style: italic; /* italic */
+    color: #4b5563; /* text-gray-600 */
+  }
+
+  pre {
+    background-color: #44475a;
+    padding: 10px;
+    border: 1px solid #6272a4;
+    border-radius: 5px;
+    overflow-x: auto;
+  }
+  code {
+    font-family: 'Courier New', Courier, monospace;
+    color: #f8f8f2;
+  }
+
+  li code {
+    color: #b45bcf;
+  }

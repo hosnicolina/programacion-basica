@@ -3,6 +3,7 @@ const game = kaboom({
 })
 
 loadSprite('emaster', '../variables/sprite.png')
+
 if (isGravity) {
   setGravity(1600)
 }
@@ -77,5 +78,7 @@ onKeyDown("down", () => {
 
 onKeyRelease(()=>{
     isMove = false
-    textMove.text = `se esta moviendo ${isMove}`
+    textMove.text = `se esta moviendo ${isMove}: usa las fechas para mover el logo.`
 })
+
+

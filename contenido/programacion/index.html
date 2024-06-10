@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Temario del Curso</title>
+    <script src="https://cdn.jsdelivr.net/npm/handlebars@latest/dist/handlebars.min.js"></script>
+    <link
+      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../../main.css" />
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  </head>
+  <body class="bg-gray-100 p-6">
+    <div class="markdown-body">
+        <div id="content"></div>
+    </div>
+
+    <script id="content-template" type="text/x-handlebars-template">
+      {{{content}}}
+    </script>
+
+    <script>
+      document.addEventListener('DOMContentLoaded', function () {
+        const source = document.getElementById('content-template').innerHTML
+        const template = Handlebars.compile(source)
+
+        const markdownContent = `
+        
+# ¿Qué es la Programación?
+
+La programación es el proceso de crear un conjunto de instrucciones que le dicen a una computadora cómo realizar una tarea. Estas instrucciones se escriben en un lenguaje de programación, que es una serie de reglas que permite traducir comandos de la lógica humana a un código comprensible por la máquina. Aquí te presento algunos aspectos clave sobre la programación:
+
+## 1. Lenguajes de Programación
+- **Lenguajes de Bajo Nivel:** Como el lenguaje ensamblador, están más cerca del código binario que entiende la computadora directamente.
+- **Lenguajes de Alto Nivel:** Como Python, JavaScript, Java, C++, entre otros, están más cerca del lenguaje humano y son más fáciles de escribir y leer.
+
+## 2. Proceso de Programación
+- **Análisis del Problema:** Comprender completamente el problema que se intenta resolver.
+- **Diseño:** Crear un plan para resolver el problema, que puede incluir diagramas de flujo y pseudocódigo.
+- **Codificación:** Escribir el código en el lenguaje de programación elegido.
+- **Depuración:** Encontrar y corregir errores en el código.
+- **Pruebas:** Asegurarse de que el programa funciona correctamente en diferentes escenarios.
+- **Mantenimiento:** Actualizar y mejorar el programa según sea necesario.
+
+## 3. Campos de Aplicación
+- **Desarrollo Web:** Creación de sitios web y aplicaciones web.
+- **Desarrollo de Software:** Programas de escritorio y móviles.
+- **Inteligencia Artificial y Ciencia de Datos:** Análisis de grandes conjuntos de datos y creación de algoritmos de aprendizaje automático.
+- **Automatización y Robótica:** Control de máquinas y procesos industriales.
+# Razones para Programar
+
+Programamos por diversas razones, abarcando tanto el ámbito personal como el profesional. Aquí te presento algunas de las principales razones por las que la gente programa:
+
+1. **Solución de Problemas:**
+   - **Automatización de Tareas:** Programamos para automatizar tareas repetitivas y tediosas, ahorrando tiempo y esfuerzo. Por ejemplo, scripts que procesan datos, generan informes o realizan copias de seguridad automáticamente.
+   - **Resolución de Problemas Específicos:** La programación nos permite crear soluciones personalizadas a problemas específicos que no pueden resolverse fácilmente con software existente.
+
+2. **Innovación y Creatividad:**
+   - **Creación de Nuevas Herramientas:** Los programadores pueden crear nuevas aplicaciones, juegos y herramientas que mejoren la vida de las personas o proporcionen entretenimiento.
+   - **Proyectos Creativos:** La programación permite la expresión creativa a través del desarrollo de sitios web, aplicaciones móviles, arte digital, y más.
+
+3. **Profesional y Económico:**
+   - **Carreras y Oportunidades de Empleo:** La programación es una habilidad muy demandada que abre muchas oportunidades laborales en diversos campos, desde el desarrollo de software hasta la ciencia de datos y la inteligencia artificial.
+   - **Emprendimiento:** Los conocimientos de programación permiten a los emprendedores crear sus propios productos y servicios tecnológicos, iniciando startups y negocios digitales.
+
+4. **Desarrollo Personal:**
+   - **Habilidad de Pensamiento Lógico y Crítico:** Programar mejora las habilidades de pensamiento lógico y crítico, ya que requiere la descomposición de problemas complejos en pasos más manejables.
+   - **Satisfacción Personal:** Completar un proyecto de programación puede ser muy gratificante, proporcionando un sentido de logro y satisfacción.
+
+5. **Impacto Social:**
+   - **Tecnología para el Bien:** La programación permite desarrollar tecnologías que pueden tener un impacto positivo en la sociedad, como aplicaciones de salud, educación, y sostenibilidad.
+   - **Acceso a la Información:** Los programadores pueden crear plataformas que democratizan el acceso a la información y los recursos, mejorando la inclusión digital.
+
+### Ejemplos Concretos:
+- **Desarrollo de Software Personalizado:** Empresas que necesitan software específico para sus operaciones internas.
+- **Aplicaciones Móviles:** Apps que facilitan tareas cotidianas, como el seguimiento de la salud o la gestión financiera.
+- **Videojuegos:** Juegos que proporcionan entretenimiento y experiencias inmersivas.
+`
+
+        const htmlContent = marked.parse(markdownContent)
+        const context = { content: htmlContent }
+        const html = template(context)
+        document.getElementById('content').innerHTML = html
+      })
+    </script>
+  </body>
+</html>
